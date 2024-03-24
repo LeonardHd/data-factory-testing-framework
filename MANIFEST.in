@@ -1,0 +1,5 @@
+include VERSION
+include DataFactoryTestingFramework.sln
+recursive-include src *.cs *.cs
+recursive-include src *.csproj *.csproj
+prune src/*/obj
