@@ -36,6 +36,6 @@ jobs:
         with:
           packages-dir: ./dist
       - name: Create release
-        run: gh release create "v${{ inputs.version }} --prerelease --target ${{ github.ref }}
+        run: gh release create "v${{ inputs.version }}" --prerelease --target ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
