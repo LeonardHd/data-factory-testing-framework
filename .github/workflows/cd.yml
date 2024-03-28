@@ -21,17 +21,17 @@ jobs:
       - name: Download sdist
         uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: sdist
           path: dist
       - name: Download whl
         uses: actions/download-artifact@v3
         with:
           name: whl
           path: dist
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: ./dist
+      # - name: Publish package distributions to PyPI
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     packages-dir: ./dist
       - name: Create release
         run: gh release create ${{ inputs.version }} --prerelease --target ${{ github.ref }}
         env:
