@@ -60,13 +60,11 @@ jobs:
         if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
         run: poetry install --no-interaction --no-root
       - name: Install project
-        run: poetry install --no-interaction
+        run: poetry run pip install .
       - name: Run linting and tests
         run: poetry run pre-commit run --all-files --show-diff-on-failure
       - name: Set build version and build package
-        run: |
-          poetry version $BUILD_VERSION
-          poetry build
+        run: poetry run python -m build
         env:
           BUILD_VERSION: ${{ needs.version.outputs.version }}
       - name: Upload dist
