@@ -4,31 +4,32 @@ from pathlib import Path
 
 from setuptools import Command, setup
 from setuptools.command.build import build
+from contextlib import suppress
 
+# from setuptools.command.build
+# https://github.com/pypa/setuptools/discussions/3762
 
 class CustomCommand(Command):
-    build_lib = "dotnet_build"
 
     def initialize_options(self) -> None:
+        self.pkg_name = self.distribution.get_name().replace("-", "_")
         self.bdist_dir = None
 
     def finalize_options(self) -> None:
-        self.bdist_dir = Path(self.get_finalized_command("bdist_wheel").bdist_dir)
+        with suppress(Exception):
+            self.bdist_dir = Path(self.get_finalized_command("bdist_wheel").bdist_dir)
+
 
     def run(self) -> None:
         if self.bdist_dir:
-            self.bdist_dir.mkdir(parents=True, exist_ok=True)
             dotnet_path = shutil.which("dotnet")
+        output_dir = self.bdist_dir / self.pkg_name / "_pythonnet"
+        output_dir.mkdir(parents=True, exist_ok=True)
 
-            if dotnet_path is None:
-                raise Exception("dotnet not found")
-            subprocess.check_call([dotnet_path, "build", "-c", "Release", "-o", self.build_lib])
-            # copy build files to the bdist_dir
-            shutil.copytree(
-                self.build_lib,
-                self.bdist_dir / "data_factory_testing_framework" / "DataFactoryTestingFrameworkEvaluator",
-                dirs_exist_ok=True,
-            )
+        if dotnet_path is None:
+            raise Exception("dotnet not found")
+
+        subprocess.check_call([dotnet_path, "build", "-c", "Release", "-o", str(output_dir), Path("src",self.pkg_name, "_pythonnet", "Evaluator.csproj")])
 
 
 class CustomBuild(build):

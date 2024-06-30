@@ -2,7 +2,7 @@ import json
 from typing import Union
 
 # from System import Activator  # this is the .NET class that we want to use in Python
-from Microsoft.Azure.DataFactoryTestingFramework.Expressions import (
+from Microsoft.Azure.DataFactoryTestingFramework.Expressions import ( # type: ignore
     Evaluator,  # this is the .NET class that we want to use in Python
 )
 

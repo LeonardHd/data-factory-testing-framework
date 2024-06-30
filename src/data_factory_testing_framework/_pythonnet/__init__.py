@@ -11,11 +11,8 @@ import clr  # noqa: E402
 
 
 def load_dotnet_assemblies() -> None:
-    # get root of the pyproject path
-    package_root = Path(os.path.dirname(data_factory_testing_framework.__file__))
-    evaluator_module_path = os.path.join(package_root)
-    dlls = glob.glob(f"{evaluator_module_path}/**/*.dll", recursive=True)
-    for dll in dlls:
+    # Load the .NET assemblies
+    for dll in Path(__file__).parent.glob("**/*.dll"):
         dll = os.path.abspath(dll)
         try:
             clr.AddReference(dll)

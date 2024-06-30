@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{35B3C0BC-05AE-4FA2-8250-DC710420F84A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataFactoryTestingFrameworkEvaluator", "src\DataFactoryTestingFrameworkEvaluatorProject\DataFactoryTestingFrameworkEvaluator.csproj", "{636E6B65-E552-41D1-94D5-63B8E6D09F73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Evaluator", "src/data_factory_testing_framework/_pythonnet/Evaluator.csproj", "{636E6B65-E552-41D1-94D5-63B8E6D09F73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

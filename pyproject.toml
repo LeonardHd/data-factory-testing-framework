@@ -91,6 +91,9 @@ convention = "google"
 minversion = "7.0"
 pythonpath = ["."]
 
+[tool.setuptools.package-data]
+data_factory_testing_framework = []
+
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
