@@ -1,8 +1,9 @@
 import json
 from typing import Union
 
-from DataFactoryTestingFrameworkEvaluator import (
-    ExpressionEvaluator,  # this is the .NET class that we want to use in Python
+# from System import Activator  # this is the .NET class that we want to use in Python
+from Microsoft.Azure.DataFactoryTestingFramework.Expressions import (
+    Evaluator,  # this is the .NET class that we want to use in Python
 )
 
 from data_factory_testing_framework.state import PipelineRunState, RunParameterType
@@ -11,7 +12,7 @@ from data_factory_testing_framework.state import PipelineRunState, RunParameterT
 class LogicAppsExpressionEvaluator:
     @staticmethod
     def evaluate(expression: str, state: PipelineRunState) -> Union[str, int, float, bool, dict, list]:
-        evaluator = ExpressionEvaluator()
+        evaluator = Evaluator()
         parameters = {
             "globalParameters": {},
             "parameters": {},
