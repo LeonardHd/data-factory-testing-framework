@@ -60,7 +60,7 @@ def test_filter_activity_on_range_of_values(input_values: [], expected_filtered_
 
 @pytest.mark.parametrize(("evaluated_value"), [1, 1.1, "string-value", {}, True, None])
 def test_filter_activity_evaluated_raises_error_when_evaluated_value_is_not_a_list(
-    evaluated_value: DataFactoryObjectType
+    evaluated_value: DataFactoryObjectType,
 ) -> None:
     # Arrange
     state = PipelineRunState(parameters=[RunParameter(RunParameterType.Pipeline, "input_values", evaluated_value)])
