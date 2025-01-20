@@ -34,7 +34,7 @@ class CustomCommand(Command):
         print("Environment variables:")
 
         build_env = os.environ.copy()
-        # build_env["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1"
+        build_env["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1"
 
         print(build_env)
         subprocess.check_call(
