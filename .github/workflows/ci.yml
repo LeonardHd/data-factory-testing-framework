@@ -90,7 +90,7 @@ jobs:
       matrix:
         os: ['ubuntu-latest', 'windows-latest']
         python-version: ['3.9', '3.10', '3.11']
-        dotnet-version: ['8.0.x']
+        dotnet-version: ['5.0.x', '8.0.x']
         # test either wheel or source distribution
         dist: [sdist]
     uses: ./.github/workflows/e2e.yml
