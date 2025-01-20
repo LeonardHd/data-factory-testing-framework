@@ -2,6 +2,7 @@
 
 Based on the following discussion: https://github.com/pypa/setuptools/discussions/3762
 """
+import os
 import shutil
 import subprocess
 from contextlib import suppress
@@ -29,6 +30,13 @@ class CustomCommand(Command):
         if dotnet_path is None:
             raise Exception("dotnet not found")
 
+        # Display the environment variables
+        print("Environment variables:")
+
+        build_env = os.environ.copy()
+        # build_env["DOTNET_SYSTEM_GLOBALIZATION_INVARIANT"] = "1"
+
+        print(build_env)
         subprocess.check_call(
             [
                 dotnet_path,
@@ -38,7 +46,8 @@ class CustomCommand(Command):
                 "-o",
                 str(output_dir),
                 Path("src", self.pkg_name, "_pythonnet", "Evaluator.csproj"),
-            ]
+            ],
+            env=build_env,
         )
 
 
